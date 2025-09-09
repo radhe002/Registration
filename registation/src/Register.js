@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
     import 'bootstrap/dist/css/bootstrap.css';
+    import './Registation.css';
 
 function Register () {
     const registerData = {
@@ -30,28 +31,45 @@ function Register () {
             console.error(error);
         }
     }
+    const handleReset = () => {
+    setRegister({
+      name: '',
+      email: '',
+      password: '',
+    });
+  };
     return(
-    <div className="container">
-        <form onSubmit={handleSubmit}>
-            <div className="card-body center" >
+    <div className="registration-container">
+        <form className="registration-form"  onSubmit={handleSubmit}>
+            <div className="form-section">
+          <h2>Create Account</h2>
+                <div className="input-group">
             <labe for="userName">Name</labe>
             <input type="text" id="userName" name="userName"placeholder="Enter Your name" value={register.name} onChange={handleChange}></input>
             <br></br>
+            </div>
+            <div className="input-group">
             <labe for="email">Email</labe>
             <input type="email" id="email" name="email"placeholder="Enter Your email" value={register.email} onChange={handleChange}></input>
             <br></br>
+            </div>
+            <div className="input-group">
             <labe for="password">Password</labe>
             <input type="password" id="password" name="password"placeholder="Enter Your password" value={register.password} onChange={handleChange}></input>
             <br></br>
-
-        <a onClick={rediretToLogin}> have an account?</a>
+            </div>
+        <div className="login-link">
+            <a onClick={rediretToLogin}> Already have an account? </a>
+          </div>
+        
         <br></br>
         <br></br>
-        <div className="card col-sm-3">
-        <button className="btn btn-success" type="submit">Register</button>
-        <button className="btn btn-primary" type="reset">Reset</button>
+        <div className="button-group">
+        <button className="btn btn-register" type="submit">Register</button>
+        <button className="btn btn-reset" type="reset" onClick={handleReset}>Reset</button>
         </div>
         </div>
+        
         </form>
     </div>
     )
